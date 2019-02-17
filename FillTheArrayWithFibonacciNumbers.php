@@ -1,5 +1,15 @@
 <?php
+/*After filling this array will become 6x6 array
+[//i=0,1,2,3,4,5  
+    [n,n,n,n,n,n],  //row 0
+    [n,n,n,n,n,n],  //row 1
+    [n,n,n,n,n,n],  //row 2
+    [n,n,n,n,n,n],  //row 3
+    [n,n,n,n,n,n],  //row 4
+    [n,n,n,n,n,n]   //row 5
+]
 
+*/ 
 $arr = [
 
 	[],
