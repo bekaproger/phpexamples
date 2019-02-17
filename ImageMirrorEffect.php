@@ -17,4 +17,4 @@ function makeImage($pngFileUrl){
 }
 //Example image
 //Please checkout this image first to make sure that the image is not already processed.
-makeImage('https://storage.googleapis.com/votetest/g.jpg');
+makeImage('PATH OR URL TO YOUR IMAGE');
