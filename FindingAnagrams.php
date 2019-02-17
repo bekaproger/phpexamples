@@ -1,3 +1,9 @@
 <?php 
+/* 
+The best way to find if a two words are anagrams (conatain exactly same characters)
 
-function anagram($w, $w2){ return (count_chars($w, 1) === count_chars($w2, 1)) ?? false;} 
+*/
+function anagram(string $w, string $w2) : bool
+{
+  return (count_chars($w, 1) == count_chars($w2, 1));
+} 
