@@ -59,7 +59,7 @@ function makeArr($arr){
 							C = A + B;
 						*/
 						$arr[$row][$i] = $arr[$l - 1][$i - 1] + $arr[$l-2][$i-1]; 
-					}elseif($row == 1){
+					}elseif($row == 1){ 
 						/*
 							[
 								[x, B], 
