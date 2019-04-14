@@ -99,3 +99,11 @@ class DataProvider
 }
 
 
+function addLargeNumbers(string $num1, string $num2)
+{
+	return gmp_strval(gmp_add($num1, $num2));
+}
+
+echo addLargeNumbers('99999999999999999999999999999999999999999999999999999999999999999999', '32423423423432875873256293569327653982452839742');
+
+
