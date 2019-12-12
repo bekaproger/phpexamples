@@ -2,45 +2,44 @@
 
 class Sequence
 {
-	protected $length;
+protected $length;
 
-	protected $sequence = [];
+protected $sequence = [];
 
-	protected $sorted = false;
+protected $sorted = false;
 
-	public function __construct(int $length)
-	{
-		$this->length = $length;
+public function __construct(int $length)
+{
+	$this->length = $length;
+}
+
+public function initSequence(callable $generator, bool $clean = true)
+{
+	if ($clean) {
+		$this->cleanSequence();
+	}
+	foreach ($generator($this->length) as $value) {
+		$this->addNumber($value);
 	}
 
-	public function initSequence(callable $generator, bool $clean = true)
-	{
-		if ($clean) {
-			$this->cleanSequence();
-		}
+	return $this;
+} 
 
-		foreach ($generator($this->length) as $value) {
-			$this->addNumber($value);
-		}
-
-		return $this;
-	} 
-
-	public function sortSequence(callable $sort_function = null)
-	{
-		if (! $sort_function) {
-			rsort($this->sequence);
-		} else {
-		    $this->sequence = $sort_function($this->sequence);
+public function sortSequence(callable $sort_function = null)
+{
+    if (! $sort_function) {
+	rsort($this->sequence);
+    } else {
+        $this->sequence = $sort_function($this->sequence);
     }
 
     $this->sorted = true;
+    
+    return $this;
+}
 
-		return $this;
-	}
-
-	protected function addNumber(int $num)
-	{
+protected function addNumber(int $num)
+{
         if ($key = in_array($num, $this->sequence)) {
             // if we already have this number in sequence we will insert this number into the sequence
             // right next to the copy this number in the sequence
@@ -49,11 +48,11 @@ class Sequence
             $this->sequence[] = $num;
             $this->sorted = false;
         }
-	}
+}
 
-	public function getMaxNumbers ( int $m)
-    {
-        if ( $m <= 0 || empty($this->sequence)) {
+public function getMaxNumbers ( int $m)
+{
+	if ( $m <= 0 || empty($this->sequence)) {
             return [];
         }
 
@@ -74,20 +73,21 @@ class Sequence
             // if sequence is sorted in ascending order get the last m items from sequence
             return array_slice($this->sequence, $m * -1);
         }
-    }
+}
 
-    public function cleanSequence()
-    {
+public function cleanSequence()
+{
     	$this->sequence = [];
     	$this->sorted = false;
 
     	return $this;
-    }
+}
 
-    public function getSequence()
-    {
+public function getSequence()
+{
     	return $this->sequence;
-    }
+}
+
 }
 
 $sequence = new Sequence(10);
@@ -107,6 +107,6 @@ $sequence->sortSequence(function ($arr) {
     return $arr;
 });
 
-$arr = $sequence->getMaxNumbers(15);
+$arr = $sequence->getMaxNumbers(3);
 
 print_r($arr);
