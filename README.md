@@ -1,2 +1,2 @@
 # phpexamples
-Just PHP code examples and experiments.
+Just playing with PHP
