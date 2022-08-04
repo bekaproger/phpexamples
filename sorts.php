@@ -2,10 +2,9 @@
 
 class BubbleSort {
 	public static function sort($arr) {
-		$withSwap = true;
-		while ($withSwap) {
-			$withSwap = false;
-			for ($i = 0; $i < count($arr) - 1; $i++) {
+		$size = count($arr);
+		for ($j = 0; $j < $size; $j++) {
+			for ($i = 0; $i < $size - $j - 1; $i++) {
 				if ($arr[$i] > $arr[$i+1]) {
 					$el = $arr[$i];
 					$arr[$i] = $arr[$i+1];
