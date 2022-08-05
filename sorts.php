@@ -79,5 +79,28 @@ class MergeSort {
 	} 
 }
 
+class SelectionSort 
+{
+	public static function sort($arr) 
+	{
+		$len = count($arr);
+		for ($i = 0; $i < $len; $i++) {
+			$minIndex = $i;
+			for ($j = $i + 1; $j < $len; $j++) {
+				if ($arr[$minIndex] > $arr[$j]) {
+					$minIndex = $j;
+				}
+			}
+			$el = $arr[$minIndex];
+			$arr[$minIndex] = $arr[$i];
+			$arr[$i] = $el;
+		}
+
+
+		return $arr;
+	}
+}
+
 var_dump(BubbleSort::sort([-900,500,100123,9,8,7,5,4,3,2,1]));
 var_dump(MergeSort::sort([-900,500,100123,9,8,7,5,4,3,2,1]));
+var_dump(SelectionSort::sort([-900,500,100123,9,8,7,5,4,3,3,3,3,3,2,1,1,1,1,1,1,1,1]));
