@@ -84,6 +84,10 @@ class SelectionSort
 	public static function sort($arr) 
 	{
 		$len = count($arr);
+		if ($len <= 1) {
+			return $arr;
+		} 
+
 		for ($i = 0; $i < $len; $i++) {
 			$minIndex = $i;
 			for ($j = $i + 1; $j < $len; $j++) {
@@ -101,6 +105,30 @@ class SelectionSort
 	}
 }
 
+class InsertionSort
+{
+	public static function sort($arr) 
+	{
+		$len = count($arr);
+		if ($len <= 1) {
+			return $arr;
+		} 
+
+		for ($i = 1; $i < $len; $i++) {
+			$j = $i;
+			while ($j > 0 && $arr[$j] < $arr[$j - 1]) {
+				$el = $arr[$j];
+				$arr[$j] = $arr[$j - 1];
+				$arr[$j - 1] = $el;
+				$j--;
+			}
+		}
+
+		return $arr;
+	}
+}
+
 var_dump(BubbleSort::sort([-900,500,100123,9,8,7,5,4,3,2,1]));
 var_dump(MergeSort::sort([-900,500,100123,9,8,7,5,4,3,2,1]));
 var_dump(SelectionSort::sort([-900,500,100123,9,8,7,5,4,3,3,3,3,3,2,1,1,1,1,1,1,1,1]));
+var_dump(InsertionSort::sort([-900,500,100123,9,8,7,5,4,3,3,3,3,3,2,1,1,1,1,1,1,1,1]));
