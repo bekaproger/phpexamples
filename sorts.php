@@ -48,31 +48,21 @@ class MergeSort {
 	}
 
 	private static function merge($arr1, $arr2) {
-		$j = 0;
 	    $k = 0;
 	    $l1 = count($arr1);
 	    $l2 = count($arr2);
 	    $arr = [];
+	    for ($i = 0; $i < $l1; $i++) {
+	    	while ($k < $l2 && $arr1[$i] >= $arr2[$k]) {
+	    		$arr[] = $arr2[$k];
+	    		$k++;
+	    	}
 
-	    for ($i = 0; $i < $l1 + $l2; $i++) {
-	        if ($k === $l2) {
-	            $arr[] = $arr1[$j];
-	            $j++;
-	        } elseif ($j === $l1) {
-	            $arr[] = $arr2[$k];
-	            $k++;
-	        } elseif ($arr1[$j] < $arr2[$k]) {
-	            $arr[] = $arr1[$j];
-	            $j++;
-	        } elseif ($arr1[$j] > $arr2[$k]) {
-	            $arr[] = $arr2[$k];
-	            $k++;
-	        } else {
-	            $arr[] = $arr1[$j];
-	            $arr[] = $arr2[$k];
-	            $j++;
-	            $k++;
-	        }
+	    	$arr[] = $arr1[$i];
+	    }
+
+	    while ($k < $l2) {
+	    	$arr[] = $arr2[$k++];
 	    }
 
 	    return $arr;
@@ -128,7 +118,57 @@ class InsertionSort
 	}
 }
 
-var_dump(BubbleSort::sort([-900,500,100123,9,8,7,5,4,3,2,1]));
-var_dump(MergeSort::sort([-900,500,100123,9,8,7,5,4,3,2,1]));
-var_dump(SelectionSort::sort([-900,500,100123,9,8,7,5,4,3,3,3,3,3,2,1,1,1,1,1,1,1,1]));
-var_dump(InsertionSort::sort([-900,500,100123,9,8,7,5,4,3,3,3,3,3,2,1,1,1,1,1,1,1,1]));
+class QuickSort
+{
+	public static function sort($arr)
+	{
+		return self::quickSort($arr, 0, count($arr) - 1);
+	}
+
+	private static function quickSort(&$arr, $low, $high) 
+	{
+		if ($low < $high) {
+			$pivot = $arr[floor(($low + $high) / 2 )];
+			$i = self::partition($arr, $low, $high, $pivot);
+			self::quickSort($arr, $low, $i-1);
+			self::quickSort($arr, $i, $high);
+		}
+
+		return $arr;
+	}
+
+	private static function partition(&$arr, $low, $high, $pivot)
+	{
+		while ($low < $high) {
+			while ($arr[$low] < $pivot) {
+				$low++;
+			}
+
+			while ($arr[$high] > $pivot) {
+				$high--;
+			}
+
+			self::swap($arr, $low, $high);
+			$low++;
+			$high--;
+		}
+
+		return $low;
+	}
+
+
+	private static function swap(&$arr, $first, $second) 
+	{
+		if ($first !== $second) {
+			$el = $arr[$first];
+			$arr[$first] = $arr[$second];
+			$arr[$second] = $el;
+		}
+	}
+}
+
+var_export(BubbleSort::sort([-900,500,100123,9,8,7,5,4,3,3,3,3,3,2,1,1,1,1,1,1,1,1]));
+var_export(MergeSort::sort([-900,500,100123,9,8,7,5,4,3,3,3,3,3,2,1,1,1,1,1,1,1,1]));
+var_export(SelectionSort::sort([-900,500,100123,9,8,7,5,4,3,3,3,3,3,2,1,1,1,1,1,1,1,1]));
+var_export(InsertionSort::sort([-900,500,100123,9,8,7,5,4,3,3,3,3,3,2,1,1,1,1,1,1,1,1]));
+var_export(QuickSort::sort([-900,500,100123,9,8,7,5,4,3,3,3,3,3,2,1,1,1,1,1,1,1,1]));
