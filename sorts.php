@@ -167,8 +167,29 @@ class QuickSort
 	}
 }
 
-var_export(BubbleSort::sort([-900,500,100123,9,8,7,5,4,3,3,3,3,3,2,1,1,1,1,1,1,1,1]));
-var_export(MergeSort::sort([-900,500,100123,9,8,7,5,4,3,3,3,3,3,2,1,1,1,1,1,1,1,1]));
-var_export(SelectionSort::sort([-900,500,100123,9,8,7,5,4,3,3,3,3,3,2,1,1,1,1,1,1,1,1]));
-var_export(InsertionSort::sort([-900,500,100123,9,8,7,5,4,3,3,3,3,3,2,1,1,1,1,1,1,1,1]));
-var_export(QuickSort::sort([-900,500,100123,9,8,7,5,4,3,3,3,3,3,2,1,1,1,1,1,1,1,1]));
+class ShellSort
+{
+	public static function sort($arr)
+	{
+		for ($d = floor(count($arr) / 2); $d > 0; $d = floor($d / 2)) {
+			for ($i = 0; $i + $d < count($arr); $i++) {
+				$j = $i + $d;
+				while ($j > 0 && $arr[$j] < $arr[$j - $d]) {
+					$el = $arr[$j];
+					$arr[$j] = $arr[$j - $d];
+					$arr[$j - $d] = $el;
+					$j -= $d;
+				}
+			}
+		}
+
+		return $arr;
+	}
+}
+
+// var_export(BubbleSort::sort([-900,500,100123,9,8,7,5,4,3,3,3,3,3,2,1,1,1,1,1,1,1,1]));
+// var_export(MergeSort::sort([-900,500,100123,9,8,7,5,4,3,3,3,3,3,2,1,1,1,1,1,1,1,1]));
+// var_export(SelectionSort::sort([-900,500,100123,9,8,7,5,4,3,3,3,3,3,2,1,1,1,1,1,1,1,1]));
+// var_export(InsertionSort::sort([-900,500,100123,9,8,7,5,4,3,3,3,3,3,2,1,1,1,1,1,1,1,1]));
+// var_export(QuickSort::sort([-900,500,100123,9,8,7,5,4,3,3,3,3,3,2,1,1,1,1,1,1,1,1]));
+var_export(ShellSort::sort([-900,500,100123,9,8,7,5,4,3,3,3,3,3,2,1,1,1,1,1,1,1,1]));
